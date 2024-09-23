@@ -629,6 +629,13 @@ extern "C" {
         GGML_SCHED_PRIO_REALTIME
     };
 
+    // Scheduling priorities
+    enum ggml_hybrid_strategy {
+        GGML_HYBRID_STRATEGY_DISABLED,
+        GGML_HYBRID_STRATEGY_EFFICIENCY,
+        GGML_HYBRID_STRATEGY_PERFORMANCE,
+    };
+
     // Threadpool params
     // Use ggml_threadpool_params_default() or ggml_threadpool_params_init() to populate the defaults
     struct ggml_threadpool_params {

@@ -20213,7 +20213,7 @@ enum ggml_status ggml_graph_compute(struct ggml_cgraph * cgraph, struct ggml_cpl
                 n_threads = omp_get_num_threads();
                 threadpool->n_threads_cur = n_threads;
             }
-
+            
             ggml_graph_compute_thread(&threadpool->workers[omp_get_thread_num()]);
         }
     } else {

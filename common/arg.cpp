@@ -496,6 +496,16 @@ gpt_params_context gpt_params_parser_init(gpt_params & params, llama_example ex,
         }
     ));
     add_opt(llama_arg(
+        { "-Hs", "--hybrid-strategy" }, "N",
+        format("set hybrid CPU strategy : 0-disabled, 1-efficiency, 2-performance (default: %d)\n", params.cpuparams.hybrid_strategy),
+        [](gpt_params& params, int hs) {
+            if (hs < 0 || hs > 2) {
+                throw std::invalid_argument("invalid value");
+            }
+            params.cpuparams.hybrid_strategy = (enum ggml_hybrid_strategy)hs;
+        }
+    ));
+    add_opt(llama_arg(
         {"--poll"}, "<0...100>",
         format("use polling level to wait for work (0 - no polling, default: %u)\n", (unsigned) params.cpuparams.poll),
         [](gpt_params & params, const std::string & value) {
